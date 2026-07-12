@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LEGOCOIN — Every brick tells a story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#D01012;
+  --red-dark:#A50D0F;
+  --yellow:#F5C518;
+  --yellow-dark:#D9A800;
+  --blue:#0D69AB;
+  --blue-dark:#084E80;
+  --green:#237841;
+  --green-dark:#1A5A31;
+  --ink:#2B2B2B;
+  --mat:#EDEDEF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Nunito',sans-serif;
+  color:var(--ink);
+  background:var(--mat);
+  background-image:radial-gradient(circle at 8px 8px, rgba(0,0,0,.045) 5px, transparent 5.5px);
+  background-size:32px 32px;
+  overflow-x:hidden;
+}
+h1,h2,h3{font-family:'Fredoka',sans-serif}
+a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+/* ---------- nav ---------- */
+nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(208,16,18,.82);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  box-shadow:inset 0 -6px 0 rgba(165,13,15,.9), 0 4px 12px rgba(0,0,0,.2);
+  padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.logo{
+  font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.4rem;color:#fff;
+  letter-spacing:1px;display:flex;align-items:center;gap:10px;text-decoration:none;
+}
+.logo .cube{
+  width:26px;height:20px;background:var(--yellow);border-radius:4px;position:relative;
+  box-shadow:inset 0 -4px 0 var(--yellow-dark);
+}
+.logo .cube::before{
+  content:'';position:absolute;top:-6px;left:4px;width:8px;height:6px;
+  background:var(--yellow);border-radius:3px 3px 0 0;box-shadow:10px 0 0 var(--yellow);
+}
+nav .links{display:flex;gap:10px;flex-wrap:wrap}
+nav .links a{
+  color:#fff;text-decoration:none;font-weight:800;font-size:.85rem;
+  padding:8px 14px;border-radius:6px;background:rgba(0,0,0,.15);
+  transition:background .2s;
+}
+nav .links a:hover,nav .links a:focus-visible{background:rgba(0,0,0,.35)}
+
+/* ---------- hero ---------- */
+.hero{max-width:960px;margin:0 auto;padding:72px 24px 48px;text-align:center;position:relative}
+.hero .blob{
+  position:absolute;border-radius:50%;filter:blur(70px);opacity:.45;
+  pointer-events:none;z-index:-1;
+}
+.hero .blob.b1{width:340px;height:340px;background:#C7F000;top:-60px;left:-80px}
+.hero .blob.b2{width:300px;height:300px;background:var(--red);top:40px;right:-100px;opacity:.3}
+.hero .blob.b3{width:260px;height:260px;background:var(--yellow);bottom:-80px;left:32%;opacity:.35}
+.hero .eyebrow{
+  display:inline-block;background:var(--blue);color:#fff;font-weight:800;
+  font-size:.8rem;letter-spacing:2px;text-transform:uppercase;
+  padding:8px 18px;border-radius:6px;margin-bottom:28px;
+  box-shadow:inset 0 -4px 0 var(--blue-dark);
+}
+.hero h1{font-size:clamp(2.6rem,8vw,5.2rem);font-weight:700;line-height:1.05;color:var(--ink)}
+.hero h1 .stack{
+  display:inline-block;background:var(--yellow);color:var(--ink);
+  padding:.05em .25em;border-radius:10px;position:relative;
+  box-shadow:inset 0 -10px 0 var(--yellow-dark);
+  transform:rotate(-1.5deg);
+}
+.hero h1 .stack::before{
+  content:'';position:absolute;top:-14px;left:12%;width:14%;height:16px;
+  background:var(--yellow);border-radius:6px 6px 0 0;
+  box-shadow:150% 0 0 var(--yellow), 300% 0 0 var(--yellow), 450% 0 0 var(--yellow);
+}
+.hero p.tag{margin:26px auto 0;max-width:560px;font-size:1.15rem;font-weight:700;color:#555}
+#office,#story{scroll-margin-top:90px}
+.cta-row{margin-top:36px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{
+  font-family:'Fredoka',sans-serif;font-weight:600;font-size:1rem;
+  padding:16px 28px;border-radius:8px;border:none;cursor:pointer;
+  text-decoration:none;color:#fff;position:relative;display:inline-block;
+  transition:transform .15s;
+}
+.btn:hover{transform:translateY(-3px)}
+.btn:active{transform:translateY(1px)}
+.btn.red{background:var(--red);box-shadow:inset 0 -6px 0 var(--red-dark),0 6px 14px rgba(208,16,18,.35)}
+.btn.blue{background:var(--blue);box-shadow:inset 0 -6px 0 var(--blue-dark),0 6px 14px rgba(13,105,171,.35)}
+.ca{
+  margin:34px auto 0;max-width:640px;
+  background:rgba(255,255,255,.55);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.7);
+  border-radius:10px;
+  display:flex;align-items:center;gap:10px;padding:10px 10px 10px 18px;
+  box-shadow:inset 0 -5px 0 rgba(0,0,0,.06), 0 8px 20px rgba(0,0,0,.1);
+  font-weight:800;font-size:.85rem;
+}
+.ca code{
+  flex:1;font-family:ui-monospace,monospace;color:var(--ink);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;
+}
+.ca button{
+  font-family:'Fredoka',sans-serif;font-weight:600;background:var(--green);color:#fff;
+  border:none;border-radius:6px;padding:10px 18px;cursor:pointer;
+  box-shadow:inset 0 -4px 0 var(--green-dark);
+}
+
+/* ---------- pixel office (habbo-style) ---------- */
+.scene-wrap{max-width:900px;margin:64px auto 0;padding:0 24px}
+.scene-title{text-align:center;margin-bottom:22px}
+.scene-title h2{
+  font-family:'Press Start 2P',monospace;
+  font-size:clamp(.95rem,3vw,1.5rem);
+  line-height:1.6;
+}
+.scene-title p{font-weight:700;color:#666;margin-top:10px}
+.scene-frame{
+  background:#1A1A22;border-radius:14px;padding:10px;
+  box-shadow:inset 0 -8px 0 rgba(0,0,0,.4), 0 16px 40px rgba(0,0,0,.25);
+}
+.ticker{
+  overflow:hidden;background:#0B0B10;border-radius:8px 8px 0 0;
+  padding:9px 0;margin-bottom:8px;white-space:nowrap;
+}
+.ticker-track{
+  display:inline-block;
+  font-family:'Press Start 2P',monospace;font-size:.6rem;color:#C7F000;
+  animation:ticker 22s linear infinite;
+}
+.ticker-track span{padding-right:40px}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.ticker-track{animation:none}}
+#office-canvas{
+  display:block;width:100%;height:auto;border-radius:8px;
+  image-rendering:pixelated;
+  image-rendering:crisp-edges;
+}
+.scene-hint{
+  text-align:center;font-family:'Press Start 2P',monospace;font-size:.55rem;
+  color:#888;margin-top:12px;letter-spacing:1px;
+}
+
+/* ---------- story ---------- */
+.story{max-width:960px;margin:80px auto 0;padding:0 24px}
+.story h2{text-align:center;font-size:clamp(1.8rem,4.5vw,2.6rem);margin-bottom:8px}
+.story>p{text-align:center;font-weight:700;color:#666;max-width:600px;margin:0 auto}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:44px}
+.card{
+  background:#fff;border-radius:12px;padding:34px 26px 28px;position:relative;
+  box-shadow:inset 0 -7px 0 rgba(0,0,0,.08), 0 10px 24px rgba(0,0,0,.1);
+}
+.card::before{
+  content:'';position:absolute;top:-9px;left:22px;width:22px;height:11px;
+  border-radius:6px 6px 0 0;background:var(--c,var(--red));
+  box-shadow:34px 0 0 var(--c,var(--red)), 68px 0 0 var(--c,var(--red));
+}
+.card h3{font-size:1.25rem;margin-bottom:10px;color:var(--c,var(--red))}
+.card p{font-weight:600;color:#555;line-height:1.6;font-size:.95rem}
+.card.b1{--c:var(--red)}
+.card.b2{--c:var(--blue)}
+.card.b3{--c:var(--green)}
+
+/* ---------- footer ---------- */
+footer{
+  margin-top:90px;background:var(--ink);color:#ddd;padding:44px 24px 30px;text-align:center;
+  box-shadow:inset 0 8px 0 rgba(0,0,0,.4);
+}
+footer .frow{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:22px}
+footer .disclaimer{max-width:640px;margin:0 auto;font-size:.75rem;color:#999;line-height:1.6}
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);
+  background:var(--green);color:#fff;font-weight:800;padding:12px 22px;border-radius:8px;
+  box-shadow:inset 0 -4px 0 var(--green-dark),0 8px 20px rgba(0,0,0,.3);
+  transition:transform .3s;z-index:99;
+}
+.toast.show{transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="#">
+    <svg class="coin" width="30" height="30" viewBox="0 0 40 40" aria-hidden="true">
+      <circle cx="20" cy="20" r="19" fill="#B08A3A"/>
+      <circle cx="20" cy="20" r="16.5" fill="#D9B45C"/>
+      <g>
+        <rect x="17.5" y="6" width="5" height="5" fill="#D01012"/>
+        <rect x="26.5" y="9.5" width="5" height="5" fill="#F5C518"/>
+        <rect x="29" y="17.5" width="5" height="5" fill="#0D69AB"/>
+        <rect x="26.5" y="25.5" width="5" height="5" fill="#237841"/>
+        <rect x="17.5" y="29" width="5" height="5" fill="#E8720C"/>
+        <rect x="8.5" y="25.5" width="5" height="5" fill="#0D69AB"/>
+        <rect x="6" y="17.5" width="5" height="5" fill="#F5C518"/>
+        <rect x="8.5" y="9.5" width="5" height="5" fill="#237841"/>
+      </g>
+      <rect x="11" y="14" width="18" height="12" fill="#D01012"/>
+      <text x="20" y="22.6" text-anchor="middle" font-family="Arial, sans-serif" font-size="6.2" font-weight="900" fill="#fff">$LEGO</text>
+    </svg>
+    LEGOCOIN
+  </a>
+  <div class="links">
+    <a href="#office">The Office</a>
+    <a href="#story">The Story</a>
+    <a href="https://x.com/Legocoinhood" target="_blank" rel="noopener">X / Twitter</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+  <span class="eyebrow">A tribute, brick by brick</span>
+  <h1>He couldn't afford the bricks.<br>So he built <span class="stack">an empire.</span></h1>
+  <p class="tag">As a kid, Vlad's family could only afford one little toy brick ambulance. He promised himself that one day, he'd get every single one. $LEGO is the tribute.</p>
+  <div class="cta-row">
+    <a class="btn red" href="https://dexscreener.com/robinhood/0x0825f46f7283cdb4f4c6d3810e2c6482401f756c" target="_blank" rel="noopener">Chart on DexScreener</a>
+    <a class="btn blue" href="https://www.axios.com/2023/12/19/talking-leadership-with-robinhood-ceo-tenev" target="_blank" rel="noopener">Read the lore</a>
+  </div>
+  <div class="ca">
+    <code id="ca-text">0x2feE7eCd03084a1DD4c2DC6e533BE883ffA1F218</code>
+    <button id="copy-ca">Copy CA</button>
+  </div>
+</section>
+
+<section class="scene-wrap" id="office">
+  <div class="scene-title">
+    <h2>LEGOCOIN HQ — FLOOR 1</h2>
+    <p>The brick executives never stop working. Neither does the chart.</p>
+  </div>
+  <div class="scene-frame">
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>$LEGO ▲ +1,000,000%</span><span>BRICKS ONLY GO UP 🧱</span><span>0x2feE...F218</span><span>TO THE MOON, ONE STUD AT A TIME</span><span>$LEGO ▲ +1,000,000%</span><span>BRICKS ONLY GO UP 🧱</span><span>0x2feE...F218</span><span>TO THE MOON, ONE STUD AT A TIME</span>
+      </div>
+    </div>
+    <canvas id="office-canvas" width="560" height="340" aria-label="Pixel-art isometric office with small block figures walking around"></canvas>
+  </div>
+  <p class="scene-hint">■ CLICK A CHARACTER TO MAKE THEM TALK ■</p>
+</section>
+
+<section class="story" id="story">
+  <h2>The Story</h2>
+  <p>Some kids get the box. Some kids get the dream. This one got both — eventually.</p>
+  <div class="cards">
+    <div class="card b1">
+      <h3>The kid</h3>
+      <p>It's a true story. As a kid, Tenev thought he'd grow up to be a collector — but his family could only afford a single little toy brick ambulance. <em>"I remember [thinking] if I have money, I would get every Lego."</em></p>
+      <p style="margin-top:14px"><a href="https://www.axios.com/2023/12/19/talking-leadership-with-robinhood-ceo-tenev" target="_blank" rel="noopener" style="color:var(--blue);font-weight:800">Read the interview (Axios) →</a></p>
+    </div>
+    <div class="card b2">
+      <h3>The builder</h3>
+      <p>No bricks? No problem. He builds with what he has: code, grit, and an obsession with giving everyone access to what was once out of reach.</p>
+    </div>
+    <div class="card b3">
+      <h3>The tribute</h3>
+      <p>$LEGO honors that story. For every kid who couldn't afford the box — and built the whole toy store instead. Brick by brick, block by block.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="frow">
+    <a class="btn red" href="https://x.com/Legocoinhood" target="_blank" rel="noopener">@Legocoinhood</a>
+    <a class="btn blue" href="https://dexscreener.com/robinhood/0x0825f46f7283cdb4f4c6d3810e2c6482401f756c" target="_blank" rel="noopener">DexScreener</a>
+    <button class="btn blue" id="copy-ca-2">Copy contract</button>
+  </div>
+  <p class="disclaimer">Legocoin ($LEGO) is a community-made meme token and fan tribute. It is not affiliated with, endorsed by, or connected to the LEGO Group, Robinhood Markets, or any person referenced in community lore. Nothing here is financial advice. DYOR.</p>
+</footer>
+
+<div class="toast" id="toast">Contract copied! 🧱</div>
+
+<script>
+/* ---------- copy CA ---------- */
+const CA = "0x2feE7eCd03084a1DD4c2DC6e533BE883ffA1F218";
+const toast = document.getElementById('toast');
+function copyCA(){
+  navigator.clipboard.writeText(CA).then(()=>{
+    toast.classList.add('show');
+    setTimeout(()=>toast.classList.remove('show'), 2200);
+  });
+}
+document.getElementById('copy-ca').addEventListener('click', copyCA);
+document.getElementById('copy-ca-2').addEventListener('click', copyCA);
+
+/* nav anchors: force smooth scroll (some in-app previews block hash navigation) */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href').slice(1);
+    const target = id ? document.getElementById(id) : null;
+    e.preventDefault();
+    if(target){ target.scrollIntoView({ behavior:'smooth', block:'start' }); }
+    else { window.scrollTo({ top:0, behavior:'smooth' }); }
+  });
+});
+
+/* ==========================================================
+   HABBO-STYLE ISOMETRIC PIXEL OFFICE
+   Low-res canvas (560x340) upscaled with image-rendering:
+   pixelated for the chunky retro look.
+   ========================================================== */
+const cv = document.getElementById('office-canvas');
+const ctx = cv.getContext('2d');
+ctx.imageSmoothingEnabled = false;
+
+const W = cv.width, H = cv.height;
+const GRID = 9;             // 9x9 tiles
+const TW = 48, TH = 24;     // tile size
+const WALL_H = 62;
+const OX = W/2, OY = WALL_H + 14;
+
+const px = v => Math.round(v);
+function iso(x, y){ return { x: OX + (x - y) * TW/2, y: OY + (x + y) * TH/2 }; }
+
+/* ---------- palette ---------- */
+const C = {
+  floorA:'#3E9C5C', floorB:'#369154', floorEdge:'#2B7A45', stud:'#4FB06E',
+  wallL:'#E3DCCB', wallL2:'#D6CEB9', wallR:'#EFE9DA', wallR2:'#E2DBC8',
+  wallTrim:'#B8AF97',
+  sky:'#9BD7F0', skyHi:'#C9EBF8', frame:'#8A8060',
+  deskTop:'#D01012', deskSide:'#A50D0F', deskFront:'#B90F11',
+  mon:'#26262E', monDark:'#141419', screen:'#06170C',
+  candleUp:'#37D267', candleDn:'#E5484D',
+  potA:'#F5C518', potB:'#D9A800', leaf:'#2E8C4F', leafD:'#237841',
+  rug:'#C7F000', rugD:'#B2D800',
+  lime:'#C7F000', feather:'#171C0A',
+  headY:'#F5C518', headD:'#D9A800', faceInk:'#26221A',
+  white:'#FFFFFF', ink:'#1C1C22',
+  signBg:'#237841', signD:'#1A5A31',
+  crate:'#C9861B', crateD:'#A96E12'
+};
+
+/* ---------- room objects & blocked tiles ---------- */
+const desks  = [ {x:2, y:2}, {x:5, y:1} ];
+const plants = [ {x:8, y:5}, {x:1, y:8} ];
+const crates = [ {x:7, y:7} ];           // stack of "brick crates"
+const rugTiles = [[3,5],[4,5],[3,6],[4,6]];
+
+const blocked = new Set();
+desks.forEach(d => { blocked.add(d.x+','+d.y); blocked.add((d.x+1)+','+d.y); });
+plants.forEach(p => blocked.add(p.x+','+p.y));
+crates.forEach(c => blocked.add(c.x+','+c.y));
+const isWalkable = (x,y) => x>=0 && y>=0 && x<GRID && y<GRID && !blocked.has(x+','+y);
+
+/* ---------- characters ---------- */
+const QUOTES = {
+  vlad: ["Bricks only go up.", "We are so early.", "One brick at a time.", "HODL the bricks."],
+  emp1: ["Buy the dip. Literally.", "Chart looks... blocky.", "Green candles, green bricks."],
+  emp2: ["Coffee run #47 today.", "I stepped on one. Ouch.", "gm gm gm", "Stacking since day one."]
+};
+const chars = [
+  { id:'vlad', label:'VLAD',  torso:'#26262E', torsoD:'#141419', legs:'#3A3A44', tie:null, hair:'#3B2A1E', x:4, y:3, fx:4, fy:3, tx:4, ty:3, t:1, speed:1.0, wait:0, bubble:null, bubbleT:0, flip:false },
+  { id:'emp1', label:'',      torso:'#C7F000', torsoD:'#9FBF00', legs:'#3A3A44', tie:null, hair:'#1E1E24', x:6, y:5, fx:6, fy:5, tx:6, ty:5, t:1, speed:1.4, wait:0, bubble:null, bubbleT:0, flip:false },
+  { id:'emp2', label:'',      torso:'#C7F000', torsoD:'#9FBF00', legs:'#555560', tie:null, hair:'#C98A2B', coffee:true, x:2, y:6, fx:2, fy:6, tx:2, ty:6, t:1, speed:1.8, wait:0, bubble:null, bubbleT:0, flip:false }
+];
+
+function pickTarget(c){
+  const dirs = [[1,0],[-1,0],[0,1],[0,-1]].sort(()=>Math.random()-.5);
+  for(const [dx,dy] of dirs){
+    const nx = c.x+dx, ny = c.y+dy;
+    if(isWalkable(nx,ny) && !chars.some(o=>o!==c && o.tx===nx && o.ty===ny)){
+      c.fx = c.x; c.fy = c.y; c.tx = nx; c.ty = ny; c.t = 0;
+      c.flip = (dx < 0 || dy > 0);
+      return;
+    }
+  }
+  c.wait = 1;
+}
+
+/* ---------- drawing helpers ---------- */
+function tilePoly(x, y){
+  const p = iso(x,y);
+  return [ [p.x, p.y], [p.x+TW/2, p.y+TH/2], [p.x, p.y+TH], [p.x-TW/2, p.y+TH/2] ];
+}
+function poly(pts, fill){
+  ctx.fillStyle = fill;
+  ctx.beginPath();
+  ctx.moveTo(px(pts[0][0]), px(pts[0][1]));
+  for(let i=1;i<pts.length;i++) ctx.lineTo(px(pts[i][0]), px(pts[i][1]));
+  ctx.closePath(); ctx.fill();
+}
+function rect(x,y,w,h,fill){ ctx.fillStyle = fill; ctx.fillRect(px(x),px(y),px(w),px(h)); }
+
+/* ---------- static room (walls + floor) ---------- */
+function drawRoom(){
+  ctx.clearRect(0,0,W,H);
+  rect(0,0,W,H,'#12121A');
+
+  /* right wall (along y=0) */
+  for(let x=0;x<GRID;x++){
+    const a = iso(x,0), b = iso(x+1,0);
+    poly([[a.x,a.y-WALL_H],[b.x,b.y-WALL_H],[b.x,b.y],[a.x,a.y]], x%2? C.wallR : C.wallR2);
+  }
+  /* left wall (along x=0) */
+  for(let y=0;y<GRID;y++){
+    const a = iso(0,y), b = iso(0,y+1);
+    poly([[a.x,a.y-WALL_H],[b.x,b.y-WALL_H],[b.x,b.y],[a.x,a.y]], y%2? C.wallL : C.wallL2);
+  }
+  /* wall trim */
+  for(let x=0;x<GRID;x++){
+    const a=iso(x,0), b=iso(x+1,0);
+    poly([[a.x,a.y-4],[b.x,b.y-4],[b.x,b.y],[a.x,a.y]], C.wallTrim);
+  }
+  for(let y=0;y<GRID;y++){
+    const a=iso(0,y), b=iso(0,y+1);
+    poly([[a.x,a.y-4],[b.x,b.y-4],[b.x,b.y],[a.x,a.y]], C.wallTrim);
+  }
+
+  /* windows on right wall */
+  [1.3, 6.3].forEach(wx=>{
+    const a = iso(wx,0), b = iso(wx+1.6,0);
+    poly([[a.x,a.y-WALL_H+12],[b.x,b.y-WALL_H+12],[b.x,b.y-14],[a.x,a.y-14]], C.frame);
+    const a2 = iso(wx+.12,0), b2 = iso(wx+1.48,0);
+    poly([[a2.x,a2.y-WALL_H+15],[b2.x,b2.y-WALL_H+15],[b2.x,b2.y-17],[a2.x,a2.y-17]], C.sky);
+    const m = iso(wx+.8,0);
+    poly([[m.x-1,m.y-WALL_H+15],[m.x+2,m.y-WALL_H+15],[m.x+2,m.y-17],[m.x-1,m.y-17]], C.frame);
+  });
+
+  /* HQ sign on left wall (skewed text along the wall plane) */
+  {
+    const a = iso(0,1.7), b = iso(0,6.3);
+    poly([[a.x,a.y-WALL_H+10],[b.x,b.y-WALL_H+10],[b.x,b.y-24],[a.x,a.y-24]], C.signBg);
+    poly([[a.x,a.y-26],[b.x,b.y-26],[b.x,b.y-24],[a.x,a.y-24]], C.signD);
+    ctx.save();
+    const s = iso(0,6.1);                       // lower end of the sign
+    ctx.translate(px(s.x), px(s.y - WALL_H + 34));
+    ctx.transform(1, -0.5, 0, 1, 0, 0);         // text rises along the left wall
+    ctx.fillStyle = C.lime;
+    ctx.font = '10px "Press Start 2P", monospace';
+    ctx.textAlign = 'left';
+    ctx.fillText('$LEGO', 22, -5);
+    ctx.fillStyle = C.white;
+    ctx.font = '6px "Press Start 2P", monospace';
+    ctx.fillText('LEGOCOIN HQ', 16, 7);
+    ctx.restore();
+  }
+
+  /* framed $LEGO coin picture on left wall */
+  {
+    const s = iso(0, 8.15);
+    ctx.save();
+    ctx.translate(px(s.x), px(s.y - WALL_H + 30));
+    ctx.transform(1, -0.5, 0, 1, 0, 0);   // follow left wall slope
+    /* frame */
+    ctx.fillStyle = C.frame;  ctx.fillRect(-2, -21, 42, 42);
+    ctx.fillStyle = C.white;  ctx.fillRect(0, -19, 38, 38);
+    /* gold coin */
+    const cx = 19, cy = 0, r = 16;
+    ctx.fillStyle = '#B08A3A';
+    ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#D9B45C';
+    ctx.beginPath(); ctx.arc(cx, cy, r - 2, 0, Math.PI*2); ctx.fill();
+    /* ring of colored brick tiles */
+    const tileCols = ['#D01012','#F5C518','#0D69AB','#237841','#E8720C','#D01012','#0D69AB','#F5C518'];
+    tileCols.forEach((col, i) => {
+      const ang = (i / tileCols.length) * Math.PI * 2 - Math.PI/2;
+      const tx = cx + Math.cos(ang) * (r - 6);
+      const ty = cy + Math.sin(ang) * (r - 6);
+      ctx.fillStyle = col;
+      ctx.fillRect(px(tx - 2), px(ty - 2), 4, 4);
+      ctx.fillStyle = 'rgba(255,255,255,.5)';
+      ctx.fillRect(px(tx - 1), px(ty - 1), 1, 1);   /* stud dot */
+    });
+    /* red center square with ticker */
+    ctx.fillStyle = '#D01012';
+    ctx.fillRect(cx - 9, cy - 6, 18, 12);
+    ctx.fillStyle = C.white;
+    ctx.font = '5px "Press Start 2P", monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText('$LEGO', cx, cy + 2);
+    ctx.restore();
+  }
+
+  /* feather logo panel on right wall (pixel quill on lime, drawn in wall space) */
+  {
+    /* 12x12 pixel feather bitmap */
+    const F = [
+      '............',
+      '......####..',
+      '.....######.',
+      '....#######.',
+      '...####..##.',
+      '..####..##..',
+      '..###..##...',
+      '.####.##....',
+      '.###.##.....',
+      '.##.##......',
+      '.#.#........',
+      '#..#........'
+    ];
+    const a = iso(3.6,0);
+    const panelW = 1.8 * TW/2;          // width along the wall
+    const panelH = WALL_H - 32;
+    ctx.save();
+    ctx.translate(px(a.x), px(a.y - WALL_H + 14));
+    ctx.transform(1, 0.5, 0, 1, 0, 0);  // follow the right wall slope
+    /* frame + lime panel */
+    ctx.fillStyle = C.frame;   ctx.fillRect(-2, -2, panelW + 4, panelH + 4);
+    ctx.fillStyle = C.lime;    ctx.fillRect(0, 0, panelW, panelH);
+    /* feather pixels */
+    const ps = 2;
+    const offX = Math.round((panelW - F[0].length * ps) / 2);
+    const offY = Math.round((panelH - F.length * ps) / 2);
+    ctx.fillStyle = C.feather;
+    F.forEach((row, ry) => {
+      for(let rx = 0; rx < row.length; rx++){
+        if(row[rx] === '#') ctx.fillRect(offX + rx*ps, offY + ry*ps, ps, ps);
+      }
+    });
+    ctx.restore();
+  }
+
+  /* floor */
+  for(let x=0;x<GRID;x++){
+    for(let y=0;y<GRID;y++){
+      const isRug = rugTiles.some(([rx,ry])=>rx===x&&ry===y);
+      const base = isRug ? ((x+y)%2? C.rug : C.rugD) : ((x+y)%2 ? C.floorA : C.floorB);
+      poly(tilePoly(x,y), base);
+      /* tile edges */
+      const p = iso(x,y);
+      ctx.strokeStyle = 'rgba(0,0,0,.14)'; ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(px(p.x), px(p.y));
+      ctx.lineTo(px(p.x+TW/2), px(p.y+TH/2));
+      ctx.lineTo(px(p.x), px(p.y+TH));
+      ctx.lineTo(px(p.x-TW/2), px(p.y+TH/2));
+      ctx.closePath(); ctx.stroke();
+      /* stud dot in the middle of each tile (baseplate feel) */
+      if(!isRug){
+        ctx.fillStyle = C.stud;
+        ctx.beginPath();
+        ctx.ellipse(px(p.x), px(p.y+TH/2), 5, 2.5, 0, 0, Math.PI*2);
+        ctx.fill();
+      }
+    }
+  }
+  /* floor front edges */
+  for(let x=0;x<GRID;x++){
+    const a = iso(x, GRID), b = iso(x+1, GRID);
+    poly([[a.x,a.y],[b.x,b.y],[b.x,b.y+6],[a.x,a.y+6]], C.floorEdge);
+  }
+  for(let y=0;y<GRID;y++){
+    const a = iso(GRID, y), b = iso(GRID, y+1);
+    poly([[a.x,a.y],[b.x,b.y],[b.x,b.y+6],[a.x,a.y+6]], C.floorEdge);
+  }
+}
+
+/* ---------- furniture ---------- */
+function drawDesk(d, time){
+  const p = iso(d.x + 1, d.y + .5);   // desk spans 2 tiles along x
+  const hx = TW, hh = 18;
+  /* legs */
+  rect(p.x - hx + 8, p.y - hh + 10, 4, hh - 4, C.deskSide);
+  rect(p.x + hx - 14, p.y - hh + 10, 4, hh - 4, C.deskSide);
+  /* top slab (iso box) */
+  const topY = p.y - hh;
+  poly([[p.x - hx, topY],[p.x, topY - TH/2],[p.x + hx, topY],[p.x, topY + TH/2]], C.deskTop);
+  poly([[p.x - hx, topY],[p.x, topY + TH/2],[p.x, topY + TH/2 + 6],[p.x - hx, topY + 6]], C.deskFront);
+  poly([[p.x + hx, topY],[p.x, topY + TH/2],[p.x, topY + TH/2 + 6],[p.x + hx, topY + 6]], C.deskSide);
+  /* studs on desk top */
+  ctx.fillStyle = '#E8393B';
+  [[-hx/2, -TH/4],[0,0],[hx/2, -TH/4]].forEach(([ox,oy])=>{
+    ctx.beginPath();
+    ctx.ellipse(px(p.x+ox), px(topY+oy), 5, 2.5, 0, 0, Math.PI*2);
+    ctx.fill();
+  });
+  /* monitor */
+  const mx = p.x - 8, my = topY - 26;
+  rect(mx, my + 22, 16, 3, C.monDark);
+  rect(mx + 6, my + 18, 4, 5, C.monDark);
+  rect(mx - 6, my - 2, 28, 21, C.mon);
+  rect(mx - 4, my, 24, 17, C.screen);
+  /* animated candles */
+  for(let i=0;i<6;i++){
+    const phase = Math.sin(time*2 + i*1.1 + d.x) * .5 + .5;
+    const ch = 4 + phase * 10;
+    const up = (i % 3) !== 1;
+    ctx.fillStyle = up ? C.candleUp : C.candleDn;
+    ctx.fillRect(px(mx - 2 + i*4), px(my + 15 - ch), 3, px(ch));
+  }
+}
+function drawPlant(pl){
+  const p = iso(pl.x, pl.y + .5);
+  const bx = p.x, by = p.y + TH/2 - 2;
+  rect(bx - 6, by - 12, 12, 10, C.potA);
+  rect(bx - 6, by - 4, 12, 2, C.potB);
+  rect(bx - 7, by - 13, 14, 2, C.potB);
+  /* pot stud */
+  rect(bx - 2, by - 16, 4, 3, C.potA);
+  /* leaves */
+  rect(bx - 1, by - 34, 3, 20, C.leafD);
+  rect(bx - 9, by - 28, 3, 14, C.leaf);
+  rect(bx + 5, by - 28, 3, 14, C.leaf);
+  rect(bx - 8, by - 30, 4, 4, C.leaf);
+  rect(bx + 4, by - 30, 4, 4, C.leaf);
+  rect(bx - 2, by - 38, 5, 5, C.leaf);
+}
+function drawCrates(cr){
+  const p = iso(cr.x, cr.y + .5);
+  const bx = p.x, by = p.y + TH/2;
+  /* two stacked "brick" crates with studs */
+  [[0,0,C.crate,C.crateD],[ -3,-14,'#D01012','#A50D0F']].forEach(([ox,oy,col,dark])=>{
+    rect(bx - 12 + ox, by - 14 + oy, 24, 12, col);
+    rect(bx - 12 + ox, by - 4 + oy, 24, 2, dark);
+    rect(bx - 8 + ox, by - 17 + oy, 5, 3, col);
+    rect(bx + 2 + ox, by - 17 + oy, 5, 3, col);
+  });
+}
+
+/* ---------- character sprite ---------- */
+function drawChar(c, time){
+  const fx = c.fx + (c.tx - c.fx) * c.t;
+  const fy = c.fy + (c.ty - c.fy) * c.t;
+  const p = iso(fx + .0, fy + .5);
+  const walking = c.t < 1;
+  const step = walking ? Math.sin(time * 12 + c.x * 3) : 0;
+  const bob = walking ? Math.abs(Math.sin(time * 12)) * 1.5 : 0;
+  const bx = px(p.x), by = px(p.y + TH/2 - bob);
+  const dir = c.flip ? -1 : 1;
+
+  /* shadow */
+  ctx.fillStyle = 'rgba(0,0,0,.25)';
+  ctx.beginPath(); ctx.ellipse(bx, py(p), 9, 4, 0, 0, Math.PI*2); ctx.fill();
+  function py(pt){ return px(pt.y + TH/2); }
+
+  /* legs (alternate on walk) */
+  rect(bx - 5, by - 10 + (step>0? -1:0), 4, 10 - (step>0?-1:0)*0, c.legs);
+  rect(bx + 1, by - 10 + (step<0? -1:0), 4, 10, c.legs);
+  /* hips */
+  rect(bx - 6, by - 12, 12, 3, C.ink);
+  /* torso (slightly wider at shoulders) */
+  rect(bx - 6, by - 24, 12, 12, c.torso);
+  rect(bx - 7, by - 24, 1, 12, c.torsoD);
+  rect(bx + 6, by - 24, 1, 12, c.torsoD);
+  /* tie for CEO */
+  if(c.tie){ rect(bx - 1, by - 23, 2, 8, c.tie); }
+  /* arms */
+  const armSwing = walking ? step * 2 : 0;
+  rect(bx - 9, by - 23 + armSwing, 3, 9, c.torso);
+  rect(bx + 6, by - 23 - armSwing, 3, 9, c.torso);
+  /* hands */
+  rect(bx - 9, by - 14 + armSwing, 3, 3, C.headY);
+  rect(bx + 6, by - 14 - armSwing, 3, 3, C.headY);
+  /* coffee cup for intern */
+  if(c.coffee){ rect(bx + 6*dir + (dir>0?3:-6), by - 15 - armSwing*dir, 4, 5, C.white); rect(bx + 6*dir + (dir>0?3:-6), by - 15 - armSwing*dir, 4, 1, '#6B4226'); }
+  /* head: yellow block with stud */
+  rect(bx - 5, by - 34, 10, 10, C.headY);
+  rect(bx - 5, by - 25, 10, 1, C.headD);
+  /* hair piece (covers head top + sideburns), stud takes hair color */
+  if(c.hair){
+    rect(bx - 6, by - 35, 12, 4, c.hair);
+    rect(bx - 6, by - 31, 1, 3, c.hair);
+    rect(bx + 5, by - 31, 1, 3, c.hair);
+    rect(bx - 2, by - 38, 5, 3, c.hair);      /* stud on hair */
+    rect(bx - 2 + (dir<0?2:0), by - 32, 3, 1, c.hair);  /* swept fringe */
+  } else {
+    rect(bx - 2, by - 37, 5, 3, C.headY);     /* bare stud */
+    rect(bx - 2, by - 37, 5, 1, '#FFDE59');
+  }
+  /* face */
+  ctx.fillStyle = C.faceInk;
+  ctx.fillRect(bx - 3 + (dir<0?1:0), by - 31, 2, 2);
+  ctx.fillRect(bx + 1 + (dir<0?1:0), by - 31, 2, 2);
+  ctx.fillRect(bx - 2 + (dir<0?1:0), by - 27, 4, 1);
+
+  /* label */
+  if(c.label){
+    ctx.font = '6px "Press Start 2P", monospace';
+    ctx.textAlign = 'center';
+    ctx.fillStyle = 'rgba(0,0,0,.5)';
+    ctx.fillText(c.label, bx+1, by - 43);
+    ctx.fillStyle = C.white;
+    ctx.fillText(c.label, bx, by - 44);
+  }
+
+  /* speech bubble */
+  if(c.bubble){
+    ctx.font = '6px "Press Start 2P", monospace';
+    const tw = ctx.measureText(c.bubble).width;
+    const bw = tw + 10, bh = 13;
+    const bxx = Math.min(Math.max(bx - bw/2, 4), W - bw - 4);
+    const byy = by - 60;
+    ctx.fillStyle = C.white;
+    ctx.fillRect(px(bxx), px(byy), px(bw), bh);
+    ctx.fillStyle = C.ink;
+    ctx.strokeStyle = C.ink; ctx.lineWidth = 1;
+    ctx.strokeRect(px(bxx)+.5, px(byy)+.5, px(bw)-1, bh-1);
+    /* tail */
+    ctx.fillStyle = C.white;
+    ctx.fillRect(bx - 2, px(byy) + bh, 4, 3);
+    ctx.fillStyle = C.ink;
+    ctx.textAlign = 'left';
+    ctx.fillText(c.bubble, px(bxx) + 5, px(byy) + 9);
+  }
+  c._screen = { x: bx, y: by - 20 };  /* for click detection */
+}
+
+/* ---------- speech ---------- */
+function say(c){
+  const q = QUOTES[c.id];
+  c.bubble = q[Math.floor(Math.random() * q.length)];
+  c.bubbleT = 3;
+}
+
+/* ---------- main loop ---------- */
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let last = performance.now();
+let speakTimer = 2;
+
+function frame(now){
+  const dt = Math.min((now - last) / 1000, .05);
+  last = now;
+  const time = now / 1000;
+
+  /* update chars */
+  for(const c of chars){
+    if(c.bubbleT > 0){ c.bubbleT -= dt; if(c.bubbleT <= 0) c.bubble = null; }
+    if(!reduced){
+      if(c.t >= 1){
+        c.x = c.tx; c.y = c.ty;
+        if(c.wait > 0){ c.wait -= dt; }
+        else if(Math.random() < dt * .8){ pickTarget(c); }
+      } else {
+        c.t = Math.min(1, c.t + dt * c.speed);
+      }
+    }
+  }
+  /* random speech */
+  if(!reduced){
+    speakTimer -= dt;
+    if(speakTimer <= 0){
+      say(chars[Math.floor(Math.random() * chars.length)]);
+      speakTimer = 3.5 + Math.random() * 2.5;
+    }
+  }
+
+  /* draw */
+  drawRoom();
+  const drawables = [];
+  desks.forEach(d => drawables.push({ depth: d.x + 1 + d.y + .5, fn: () => drawDesk(d, time) }));
+  plants.forEach(p => drawables.push({ depth: p.x + p.y + .5, fn: () => drawPlant(p) }));
+  crates.forEach(cr => drawables.push({ depth: cr.x + cr.y + .5, fn: () => drawCrates(cr) }));
+  chars.forEach(c => {
+    const fx = c.fx + (c.tx - c.fx) * c.t;
+    const fy = c.fy + (c.ty - c.fy) * c.t;
+    drawables.push({ depth: fx + fy + .51, fn: () => drawChar(c, time) });
+  });
+  drawables.sort((a,b) => a.depth - b.depth).forEach(d => d.fn());
+
+  requestAnimationFrame(frame);
+}
+
+/* click a character to make them talk */
+cv.addEventListener('click', e => {
+  const r = cv.getBoundingClientRect();
+  const mx = (e.clientX - r.left) * (W / r.width);
+  const my = (e.clientY - r.top) * (H / r.height);
+  let best = null, bd = 1e9;
+  for(const c of chars){
+    if(!c._screen) continue;
+    const d = Math.hypot(c._screen.x - mx, c._screen.y - my);
+    if(d < 30 && d < bd){ bd = d; best = c; }
+  }
+  if(best) say(best);
+});
+
+/* start once the pixel font is ready so canvas text renders correctly */
+if(document.fonts && document.fonts.load){
+  Promise.all([
+    document.fonts.load('6px "Press Start 2P"'),
+    document.fonts.load('10px "Press Start 2P"')
+  ]).finally(() => requestAnimationFrame(frame));
+} else {
+  requestAnimationFrame(frame);
+}
+</script>
+</body>
+</html>
